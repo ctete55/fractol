@@ -20,19 +20,24 @@ static int	point(t_dados *a)
 		free(a->win);
 		return (1);
 	}
-	
+	d->img = mlx_new_image(d->mlx_ptr, LARGURA * 2, ALTURA * 2);
+	if(d->img == NULL)
+	{
+		free(d->img);
+		return (1);
+	}
+	d->addr = mlx_get_data_addr(d->img_ptr, &d->pixel, &d->tam, &d->endian);
+	d->zoom = 1.1;
+	d->eixo_x = 1.0;
+	d->eixo_y = 1.0;
+	d->cor_fracts = 2;
+	return (0);
 }
 
-int 	main()
+int	main()
 {
 	t_dados data;
 	point(&data);
 	mlx_hook(data.win, 17, 0, close_win, &data);
-	/*t_data  *a;
-	a-> width = 500;
-	a-> heigth = 600;
-	a->mlx = mlx_init();
-	a->win = mlx_new_window(a->mlx, a->width, a->heigth,"fracto");*/
-
 	mlx_loop(data.mlx);
 }
