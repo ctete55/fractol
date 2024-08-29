@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdlib.h> 
 
+#define LARGURA 960
+#define ALTURA 580
 static int	point(t_dados *a)
 {
 	
@@ -10,34 +12,52 @@ static int	point(t_dados *a)
 	a-> heigth = 800;
 	a->mlx = mlx_init();
 	if(a->mlx == NULL)
-	{
-		free(a->mlx);
-		return (1);
-	}
-	a->win = mlx_new_window(a->mlx, a->width, a->heigth,"fracto");
+		printf("caraapau");
+	
+	a->win = mlx_new_window(a->mlx, a->width, a->heigth,"fractol");
 	if(a->win == NULL)
 	{
 		free(a->win);
 		return (1);
 	}
-	d->img = mlx_new_image(d->mlx_ptr, LARGURA * 2, ALTURA * 2);
-	if(d->img == NULL)
+	a->img = mlx_new_image(a->mlx, LARGURA * 2 , ALTURA * 2 );
+	if(a->img == NULL)
 	{
-		free(d->img);
+		free(a->img);
 		return (1);
 	}
-	d->addr = mlx_get_data_addr(d->img_ptr, &d->pixel, &d->tam, &d->endian);
-	d->zoom = 1.1;
-	d->eixo_x = 1.0;
-	d->eixo_y = 1.0;
-	d->cor_fracts = 2;
+	a->addr = mlx_get_data_addr(a->img, &a->pixel, &a->tam, &a->endian);
+	a->zoom = 1.1;
+	a->eixo_x = 1.0;
+	a->eixo_y = 1.0;
+	a->cor_fracts = 5;
 	return (0);
 }
+int	handle_args(int argc, char **argv, t_dados *data)
+{
+	if(argc == 2 && ft_strcmp(argv[1], "mandelbrot") == 0)
+	{
+		draw_mandelbrot(data);
+	}	
 
-int	main()
+	else if(argc == 4 && (ft_strcmp(argv[1], "julia") == 0))
+	{
+		
+	
+	}
+	return 0;
+}
+
+int	main(int argc, char **argv)
 {
 	t_dados data;
+	argv_erro(argc, argv, &data);
 	point(&data);
+	handle_args(argc, argv, &data);
 	mlx_hook(data.win, 17, 0, close_win, &data);
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 1, 1);
 	mlx_loop(data.mlx);
+	return 0;
 }
+
+
