@@ -20,10 +20,10 @@ typedef struct s_dados
 	double	eixo_y;
 	double	width;
 	double	heigth;
-	int		cor_fracts;
+	int		color_fracts;
 }	t_dados;
 
-typedef struct s_coordenar
+typedef struct s_coord
 {
 	double	c_re;
 	double	c_im;
@@ -32,7 +32,7 @@ typedef struct s_coordenar
 	double	z_re2;
 	double	z_im2;
 	int		cor;
-}	t_coordenar;
+}	t_coord;
 
 
 
@@ -40,6 +40,6 @@ typedef struct s_coordenar
 int	close_win(t_dados *parm);
 void	draw_mandelbrot(t_dados *d);
 int	ft_strcmp(char *s1, char *s2);
-int	cor(int i, int limite_interacao, int cor_fractais);
+int	color(int i, int limite_interacao, int cor_fractais);
 void	argv_erro(int argc, char **argv , t_dados *a);
 #endif

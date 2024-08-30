@@ -30,7 +30,7 @@ static int	point(t_dados *a)
 	a->zoom = 1.1;
 	a->eixo_x = 1.0;
 	a->eixo_y = 1.0;
-	a->cor_fracts = 5;
+	a->color_fracts = 2;
 	return (0);
 }
 int	handle_args(int argc, char **argv, t_dados *data)
@@ -42,7 +42,12 @@ int	handle_args(int argc, char **argv, t_dados *data)
 
 	else if(argc == 4 && (ft_strcmp(argv[1], "julia") == 0))
 	{
-		
+		/*data->x = ft_atodbl(av[2]);
+		data->y = ft_atodbl(av[3]);
+		draw_julia(dados);
+		mlx_hook(dados->win_ptr, 2, 1L, eventos2, dados);
+		mlx_mouse_hook(dados->win_ptr, mouse_eventos2, dados);
+		*/
 	
 	}
 	return 0;
